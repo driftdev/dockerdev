@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  spicedb:
+    image: "authzed/spicedb"
+    command: "serve"
+    restart: "always"
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+      - "50051:50051"
+    environment:
+      - "SPICEDB_GRPC_PRESHARED_KEY=foobar"
+      - "SPICEDB_DATASTORE_ENGINE=cockroachdb"
+      - "SPICEDB_DATASTORE_CONN_URI=postgresql://root:secret@crdb:26257/spicedb?sslmode=disable"
+      - "SPICEDB_LOG_LEVEL=info"
+      - "SPICEDB_LOG_FORMAT=console"
+    depends_on:
+      - "migrate"
+
+  migrate:
+    image: "authzed/spicedb"
+    command: "migrate head"
+    restart: "on-failure:3"
+    environment:
+      - "SPICEDB_DATASTORE_ENGINE=cockroachdb"
+      - "SPICEDB_DATASTORE_CONN_URI=postgresql://root:secret@crdb:26257/spicedb?sslmode=disable"
+      - "SPICEDB_LOG_LEVEL=info"
+      - "SPICEDB_LOG_FORMAT=console"
+    depends_on:
+      - "init_database"
+
+  init_database:
+    image: "cockroachdb/cockroach"
+    restart: "on-failure:3"
+    command: "sql --insecure -e 'CREATE DATABASE IF NOT EXISTS spicedb;'"
+    environment:
+      - "COCKROACH_HOST=crdb:26257"
+    depends_on:
+      - "init_cluster"
+
+  init_cluster:
+    image: "cockroachdb/cockroach"
+    restart: "on-failure:3"
+    command: "init --insecure"
+    environment:
+      # initialize cluster through node 1
+      - "COCKROACH_HOST=datastores-crdb-1:26257"
+    depends_on:
+      - "crdb"
+
+  crdb:
+    image: "cockroachdb/cockroach"
+    # in order to make the cluster form, the host name is <project>-<service>-<number>
+    # The setup will support --scale arg with any value
+    command: "start --join=datastores-crdb-1,datastores-crdb-2,datastores-crdb-3 --insecure"
+    ports:
+      - "8080"
+      - "26257"
+    environment:
+      - "POSTGRES_PASSWORD=secret"
+    healthcheck:
+      test: "curl --fail http://localhost:8080/health?ready=1 || exit 1"
+      interval: "2s"
+      retries: 3
+      start_period: "15s"
+      timeout: "5s"

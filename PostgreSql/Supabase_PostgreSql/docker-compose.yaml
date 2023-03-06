@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: supabase/postgres:14.1.0.89
+    restart: always
+    environment:
+      POSTGRES_USER: arkam
+      POSTGRES_PASSWORD: Arkam2004
+    ports:
+      - '5432:5432'

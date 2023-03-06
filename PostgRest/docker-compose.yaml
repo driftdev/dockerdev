@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: arkam
+      POSTGRES_PASSWORD: Arkam2004
+    ports:
+      - '5432:5432'
+
+  server:
+    image: postgrest/postgrest
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgresql://arkam:Arkam2004@host.docker.internal:5432/bug_tracker_db
+      PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_DB_SCHEMAS: public
+      
+  swagger:
+    image: swaggerapi/swagger-ui
+    restart: always
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      API_URL: http://localhost:3000/
