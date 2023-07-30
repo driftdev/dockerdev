@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  etcd:
+    image: bitnami/etcd:latest
+    container_name: etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+    command: etcd \
+      --name etcd-node \
+      --listen-client-urls http://0.0.0.0:2379 \
+      --advertise-client-urls http://0.0.0.0:2379 \
+      --listen-peer-urls http://0.0.0.0:2380 \
+      --initial-advertise-peer-urls http://0.0.0.0:2380 \
+      --initial-cluster etcd-node=http://0.0.0.0:2380 \
+      --initial-cluster-token etcd-cluster-token \
+      --initial-cluster-state new
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    networks:
+      - etcd-network
+
+networks:
+  etcd-network:
+    driver: bridge
