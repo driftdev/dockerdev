@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  centrifugo:
+    container_name: centrifugo
+    image: centrifugo/centrifugo
+    volumes:
+      - ./config.json:/centrifugo/config.json
+    command: centrifugo -c config.json
+    ports:
+      - 9000:9000
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
