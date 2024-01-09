@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  tembo:
+    image: quay.io/tembo/tembo-local
+    ports:
+      - "5432:5432"
+    stdin_open: true
+    tty: true
+    container_name: local-tembo
+    restart: unless-stopped
