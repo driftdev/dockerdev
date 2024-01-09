@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   tembo:
-    image: quay.io/tembo/tembo-local
+    image: quay.io/tembo/tembo-local:latest
     ports:
       - "5432:5432"
     stdin_open: true
