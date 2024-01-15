@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  slashbase:
+    image: slashbaseide/slashbase
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      ROOT_USER_EMAIL: ${root_user_email}
+      ROOT_USER_PASSWORD: ${root_user_password}
+      AUTH_TOKEN_SECRET: ${auth_token_secret}
+      CRYPTED_DATA_SECRET: ${crypt_data_secret}
+      APP_DB_HOST: ${app_db_host}
+      APP_DB_PORT: ${app_db_port}
+      APP_DB_USER: ${app_db_user}
+      APP_DB_PASS: ${app_db_pass}
+      APP_DB_NAME: ${app_db_name}
