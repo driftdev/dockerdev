@@ -1,0 +1,22 @@
+version: "3"
+services:
+  dbgate:
+    image: dbgate/dbgate
+    restart: always
+    ports:
+      - 80:3000
+    volumes:
+      - dbgate-data:/root/.dbgate
+    environment:
+      CONNECTIONS: con1,con2,con3,con4
+
+      LABEL_con1: ${db_name}
+      SERVER_con1: ${db_host}
+      USER_con1: ${db_user}
+      PASSWORD_con1: ${db_password}
+      PORT_con1: ${db_port}
+      ENGINE_con1: ${db_engine}
+
+volumes:
+  dbgate-data:
+    driver: local
