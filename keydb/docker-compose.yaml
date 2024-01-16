@@ -2,6 +2,6 @@ version: "3.7"
 services:
   keydb:
     image: eqalpha/keydb:latest
+    restart: always
     ports:
       - "6379:6379"
-    restart: always
