@@ -1,0 +1,24 @@
+version: "3.1"
+
+services:
+  ferretdb:
+    image: ghcr.io/ferretdb/ferretdb
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - FERRETDB_POSTGRESQL_URL=postgres://arkam:Arkam2004@postgres:5432/ferretdb
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: arkam
+      POSTGRES_PASSWORD: Arkam2004
+      POSTGRES_DB: ferretdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
