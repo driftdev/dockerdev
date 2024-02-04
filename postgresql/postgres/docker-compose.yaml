@@ -9,5 +9,4 @@ services:
       POSTGRES_PASSWORD: Arkam2004
     ports:
       - "5432:5432"
-    volumes:
-      - ./init-scripts:/docker-entrypoint-initdb.d
+    command: ["postgres", "-c", "wal_level=logical"]

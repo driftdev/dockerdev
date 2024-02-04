@@ -10,7 +10,7 @@ services:
     tty: true
     volumes:
       - data:/var/lib/postgresql/data
-      - ./init-scripts:/docker-entrypoint-initdb.d
+    command: ["postgres", "-c", "wal_level=logical"]
 
 volumes:
   data:
