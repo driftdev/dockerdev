@@ -1,0 +1,12 @@
+version: "3.1"
+
+services:
+  supabase-postgres:
+    image: supabase/postgres:15.1.1.13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Arkam2004
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - "5432:5432"
