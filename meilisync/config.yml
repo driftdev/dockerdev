@@ -1,0 +1,22 @@
+progress:
+  type: file
+source:
+  type: postgres
+  host: host.docker.internal
+  port: 5432
+  user: postgres
+  password: Arkam2004
+  database: postgres
+meilisearch:
+  api_url: http://host.docker.internal:7700/
+  api_key: Arkam2004
+  insert_size: 1000
+  insert_interval: 10
+sync:
+  - table: users
+    index: users
+    full: false
+    fields:
+      id:
+      name:
+      email:
