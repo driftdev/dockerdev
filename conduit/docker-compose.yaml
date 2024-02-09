@@ -3,4 +3,4 @@ services:
   conduit:
     image: ghcr.io/conduitio/conduit:latest
     ports:
-      - 8080:8080
+      - 8100:8080
