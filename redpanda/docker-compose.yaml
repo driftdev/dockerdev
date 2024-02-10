@@ -11,6 +11,8 @@ services:
       - --advertise-kafka-addr PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9092
       - --pandaproxy-addr 0.0.0.0:8082
       - --advertise-pandaproxy-addr localhost:8082
+      - --set redpanda.enable_transactions=true
+      - --set redpanda.enable_idempotence=true
     ports:
       - 8081:8081
       - 8082:8082
