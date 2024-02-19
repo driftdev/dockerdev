@@ -2,6 +2,7 @@ version: "3.7"
 services:
   redpanda:
     image: redpandadata/redpanda:latest
+    restart: always
     command:
       - redpanda start
       - --smp 1
@@ -22,6 +23,7 @@ services:
 
   console:
     image: redpandadata/console:latest
+    restart: always
     entrypoint: /bin/sh
     command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
     environment:
