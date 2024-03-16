@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  pgweb:
+    image: sosedoff/pgweb
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgresql://arkam:Arkam2004@host.docker.internal:5432/postgres?sslmode=disable
