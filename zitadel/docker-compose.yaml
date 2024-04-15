@@ -2,10 +2,10 @@ version: "3.8"
 
 services:
   zitadel:
-    restart: "always"
     networks:
       - "zitadel"
     image: "ghcr.io/zitadel/zitadel:latest"
+    restart: always
     command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
     environment:
       - "ZITADEL_DATABASE_POSTGRES_HOST=db"
@@ -25,8 +25,8 @@ services:
       - "8080:8080"
 
   db:
-    restart: "always"
     image: postgres:latest
+    restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -40,6 +40,18 @@ services:
       start_period: "20s"
     ports:
       - "5432:5432"
+    command:
+      [
+        "postgres",
+        "-c",
+        "log_statement=all",
+        "-c",
+        "wal_level=logical",
+        "-c",
+        "max_wal_senders=10",
+        "-c",
+        "max_replication_slots=10",
+      ]
 
 networks:
   zitadel:
