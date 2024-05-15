@@ -2,8 +2,8 @@ services:
   db:
     image: "postgres:latest"
     environment:
-      POSTGRES_USER: supertokens_user
-      POSTGRES_PASSWORD: somePassword
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: supertokens
     ports:
       - 5432:5432
@@ -23,7 +23,7 @@ services:
     ports:
       - 3567:3567
     environment:
-      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db:5432/supertokens"
+      POSTGRESQL_CONNECTION_URI: "postgresql://root:root@db:5432/supertokens"
     networks:
       - app_network
     restart: unless-stopped
