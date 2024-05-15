@@ -1,6 +1,6 @@
 services:
   authorizer:
-    image: lakhansamani/authorizer
+    image: lakhansamani/authorizer:latest
     ports:
       - "8070:8080"
     restart: always
