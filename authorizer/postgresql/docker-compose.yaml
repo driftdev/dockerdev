@@ -6,4 +6,4 @@ services:
     restart: always
     environment:
       DATABASE_TYPE: postgres
-      DATABASE_URL: postgresql://arkam:Arkam2004@host.docker.internal:5432/authorizer
+      DATABASE_URL: postgresql://root:root@host.docker.internal:5432/authorizer
