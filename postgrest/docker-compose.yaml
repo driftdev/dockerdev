@@ -5,7 +5,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      PGRST_DB_URI: postgresql://arkam:Arkam2004@host.docker.internal:5432/postgres
+      PGRST_DB_URI: postgresql://root:root@host.docker.internal:5432/postgres
       PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
       PGRST_DB_ANON_ROLE: web_anon
       PGRST_DB_SCHEMAS: public
