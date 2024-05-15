@@ -1,7 +1,5 @@
-version: "3"
-
 services:
   webhook-tester:
     image: tarampampam/webhook-tester
     command: serve --port 8040 --create-session 00000000-0000-0000-0000-000000000000
-    ports: ['8040:8040/tcp']
+    ports: ["8040:8040/tcp"]

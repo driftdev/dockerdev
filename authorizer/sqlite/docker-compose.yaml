@@ -1,4 +1,3 @@
-version: "3"
 services:
   authorizer:
     image: lakhansamani/authorizer

@@ -1,10 +1,9 @@
-version: "3"
 services:
   authorizer:
     image: lakhansamani/authorizer
     ports:
       - "8070:8080"
     restart: always
-    environment: 
+    environment:
       DATABASE_TYPE: postgres
       DATABASE_URL: postgresql://arkam:Arkam2004@host.docker.internal:5432/authorizer

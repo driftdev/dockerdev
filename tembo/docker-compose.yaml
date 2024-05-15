@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   tembo:
     image: quay.io/tembo/tembo-local

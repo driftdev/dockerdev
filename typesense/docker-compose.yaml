@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   typesense:
     image: typesense/typesense:26.0

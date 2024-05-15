@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Arkam2004
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"

@@ -1,10 +1,9 @@
-version: "3"
 services:
   authorizer:
     image: lakhansamani/authorizer
     ports:
       - "8070:8080"
     restart: always
-    environment: 
+    environment:
       DATABASE_TYPE: mongodb
       DATABASE_URL: mongodb://root:Arkam2004@host.docker.internal:27017

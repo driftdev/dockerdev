@@ -1,7 +1,4 @@
-version: '3.8'
-
 services:
-
   pd0:
     container_name: surrealdb-pd0
     image: pingcap/pd:latest
@@ -118,7 +115,7 @@ services:
     container_name: surrealdb
     ports:
       - "8000:8000"
-    command: 
+    command:
       - start
       - --log=trace
       - --user=root
