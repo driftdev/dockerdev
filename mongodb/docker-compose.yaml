@@ -6,4 +6,4 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: Arkam2004
+      MONGO_INITDB_ROOT_PASSWORD: root
