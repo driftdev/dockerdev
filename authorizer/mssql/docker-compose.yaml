@@ -6,5 +6,5 @@ services:
     restart: always
     environment:
       DATABASE_TYPE: sqlserver
-      DATABASE_URL: sqlserver://SA:Arkam2004@host.docker.internal:1433?database=authorizer
+      DATABASE_URL: sqlserver://SA:root@host.docker.internal:1433?database=authorizer
       REDIS_URL: redis://host.docker.internal:6379
