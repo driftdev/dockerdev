@@ -6,4 +6,4 @@ services:
     restart: always
     environment:
       DATABASE_TYPE: mongodb
-      DATABASE_URL: mongodb://root:Arkam2004@host.docker.internal:27017
+      DATABASE_URL: mongodb://root:root@host.docker.internal:27017
