@@ -2,7 +2,7 @@ services:
   readyset:
     image: readysettech/readyset:latest
     environment:
-      - UPSTREAM_DB_URL=postgres://postgres:postgres@host.docker.internal:5432/postgres
+      - UPSTREAM_DB_URL=postgres://root:root@host.docker.internal:5432/postgres
       - LISTEN_ADDRESS=0.0.0.0:5433
       - PROMETHEUS_METRICS=true
       - STANDALONE=true
