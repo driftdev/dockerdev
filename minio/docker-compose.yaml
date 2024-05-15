@@ -8,8 +8,8 @@ services:
     volumes:
       - minio_data:/data
     environment:
-      MINIO_ROOT_USER: arkam
-      MINIO_ROOT_PASSWORD: Arkam2004
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: root
     command: server --console-address ":9001" /data
 
 volumes:
