@@ -28,3 +28,8 @@ services:
         "-c",
         "max_replication_slots=10",
       ]
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
