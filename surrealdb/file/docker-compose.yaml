@@ -4,13 +4,12 @@ services:
     ports:
       - "8000:8000"
     restart: always
-    user: "root"
     command:
       - start
       - -A
       - --auth
-      - --user=root
-      - --pass=root
+      - --user=dev
+      - --pass=dev
       - file:/data/database.db
     volumes:
       - data:/data

@@ -5,7 +5,7 @@ services:
     ports:
       - 27017:27017
     environment:
-      - FERRETDB_POSTGRESQL_URL=postgres://root:root@postgres:5432/ferretdb
+      - FERRETDB_POSTGRESQL_URL=postgres://dev:dev@postgres:5432/ferretdb
     depends_on:
       - postgres
 
@@ -13,8 +13,8 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
       POSTGRES_DB: ferretdb
     ports:
       - "5432:5432"

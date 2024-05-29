@@ -4,8 +4,8 @@ source:
   type: postgres
   host: host.docker.internal
   port: 5432
-  user: postgres
-  password: Arkam2004
+  user: dev
+  password: dev
   database: postgres
 meilisearch:
   api_url: http://host.docker.internal:7700/

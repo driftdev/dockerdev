@@ -5,4 +5,4 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - DATABASE_URL=postgresql://root:root@host.docker.internal:5432/postgres?sslmode=disable
+      - DATABASE_URL=postgresql://dev:dev@host.docker.internal:5432/postgres?sslmode=disable

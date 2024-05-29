@@ -3,8 +3,8 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
     ports:
       - "5432:5432"
     command:

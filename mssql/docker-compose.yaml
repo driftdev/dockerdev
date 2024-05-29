@@ -5,5 +5,5 @@ services:
       - "1433:1433"
     restart: always
     environment:
-      SA_PASSWORD: "root"
+      SA_PASSWORD: "dev"
       ACCEPT_EULA: "Y"

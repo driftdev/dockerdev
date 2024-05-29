@@ -10,7 +10,7 @@ services:
     environment:
       - "SPICEDB_GRPC_PRESHARED_KEY=foobar"
       - "SPICEDB_DATASTORE_ENGINE=cockroachdb"
-      - "SPICEDB_DATASTORE_CONN_URI=postgresql://root:root@crdb:26257/spicedb?sslmode=disable"
+      - "SPICEDB_DATASTORE_CONN_URI=postgresql://dev:dev@crdb:26257/spicedb?sslmode=disable"
       - "SPICEDB_LOG_LEVEL=info"
       - "SPICEDB_LOG_FORMAT=console"
     depends_on:
@@ -22,7 +22,7 @@ services:
     restart: "on-failure:3"
     environment:
       - "SPICEDB_DATASTORE_ENGINE=cockroachdb"
-      - "SPICEDB_DATASTORE_CONN_URI=postgresql://root:root@crdb:26257/spicedb?sslmode=disable"
+      - "SPICEDB_DATASTORE_CONN_URI=postgresql://dev:dev@crdb:26257/spicedb?sslmode=disable"
       - "SPICEDB_LOG_LEVEL=info"
       - "SPICEDB_LOG_FORMAT=console"
     depends_on:
@@ -56,7 +56,7 @@ services:
       - "8080"
       - "26257"
     environment:
-      - "POSTGRES_PASSWORD=root"
+      - "POSTGRES_PASSWORD=dev"
     healthcheck:
       test: "curl --fail http://localhost:8080/health?ready=1 || exit 1"
       interval: "2s"

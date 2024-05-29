@@ -12,8 +12,8 @@ services:
       - "ZITADEL_DATABASE_POSTGRES_USER_USERNAME=zitadel"
       - "ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=zitadel"
       - "ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=disable"
-      - "ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=root"
-      - "ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=root"
+      - "ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=dev"
+      - "ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=dev"
       - "ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=disable"
       - "ZITADEL_EXTERNALSECURE=false"
     depends_on:
@@ -29,8 +29,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
     networks:
       - "zitadel"
     healthcheck:

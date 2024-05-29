@@ -3,7 +3,7 @@ services:
     image: getmeili/meilisearch
     restart: always
     environment:
-      MEILI_MASTER_KEY: root
+      MEILI_MASTER_KEY: dev
       MEILI_ENV: development
       MEILI_DB_PATH: /data.ms:/data.ms
     ports:

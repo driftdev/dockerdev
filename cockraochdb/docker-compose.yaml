@@ -3,9 +3,9 @@ services:
     image: cockroachdb/cockroach:latest
     restart: always
     environment:
-      COCKROACH_DATABASE: root
-      COCKROACH_USER: root
-      COCKROACH_PASSWORD: root
+      COCKROACH_DATABASE: dev
+      COCKROACH_USER: dev
+      COCKROACH_PASSWORD: dev
     ports:
       - "26257:26257"
       - "8080:8080"

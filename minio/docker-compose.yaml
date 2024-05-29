@@ -8,8 +8,8 @@ services:
     volumes:
       - minio_data:/data
     environment:
-      MINIO_ROOT_USER: root
-      MINIO_ROOT_PASSWORD: root
+      MINIO_ROOT_USER: dev
+      MINIO_ROOT_PASSWORD: dev
     command: server --console-address ":9001" /data
 
 volumes:
