@@ -2,10 +2,14 @@ services:
   cockroachdb:
     image: cockroachdb/cockroach:latest
     restart: always
+    environment:
+      COCKROACH_DATABASE: root
+      COCKROACH_USER: root
+      COCKROACH_PASSWORD: root
     ports:
       - "26257:26257"
       - "8080:8080"
-    command: start-single-node --insecure
+    command: start-single-node
     volumes:
       - data:/cockroach/cockroach-data
 
