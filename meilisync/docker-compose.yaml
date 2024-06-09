@@ -1,6 +1,0 @@
-services:
-  meilisync:
-    image: long2ice/meilisync
-    volumes:
-      - ./config.yml:/meilisync/config.yml
-    restart: always
