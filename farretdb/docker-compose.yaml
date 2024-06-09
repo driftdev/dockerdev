@@ -1,6 +1,6 @@
 services:
   ferretdb:
-    image: ghcr.io/ferretdb/ferretdb
+    image: ghcr.io/ferretdb/ferretdb:latest
     restart: always
     ports:
       - 27017:27017
@@ -10,7 +10,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: dev

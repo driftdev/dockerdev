@@ -1,7 +1,6 @@
 services:
   pocketbase:
     image: ghcr.io/muchobien/pocketbase:latest
-    container_name: pocketbase
     restart: always
     command:
       - --encryptionEnv #optional

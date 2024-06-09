@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:latest
+    restart: always
     container_name: postgres
     networks:
       - default
@@ -33,6 +34,7 @@ services:
       migrate:
         condition: service_completed_successfully
     image: openfga/openfga:latest
+    restart: always
     container_name: openfga
     command: run
     environment:

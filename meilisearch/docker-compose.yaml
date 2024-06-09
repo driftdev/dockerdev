@@ -1,6 +1,6 @@
 services:
   meilisearch:
-    image: getmeili/meilisearch
+    image: getmeili/meilisearch:latest
     restart: always
     environment:
       MEILI_MASTER_KEY: dev

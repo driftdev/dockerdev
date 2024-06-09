@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:latest
     restart: always
     ports:
       - 5672:5672

@@ -1,6 +1,6 @@
 services:
   spicedb:
-    image: "authzed/spicedb"
+    image: authzed/spicedb:latest
     command: "serve"
     restart: "always"
     ports:
@@ -29,7 +29,7 @@ services:
       - "init_database"
 
   init_database:
-    image: "cockroachdb/cockroach"
+    image: cockroachdb/cockroach:latest
     restart: "on-failure:3"
     command: "sql --insecure -e 'CREATE DATABASE IF NOT EXISTS spicedb;'"
     environment:
@@ -38,7 +38,7 @@ services:
       - "init_cluster"
 
   init_cluster:
-    image: "cockroachdb/cockroach"
+    image: cockroachdb/cockroach:latest
     restart: "on-failure:3"
     command: "init --insecure"
     environment:
@@ -48,7 +48,7 @@ services:
       - "crdb"
 
   crdb:
-    image: "cockroachdb/cockroach"
+    image: cockroachdb/cockroach:latest
     # in order to make the cluster form, the host name is <project>-<service>-<number>
     # The setup will support --scale arg with any value
     command: "start --join=datastores-crdb-1,datastores-crdb-2,datastores-crdb-3 --insecure"

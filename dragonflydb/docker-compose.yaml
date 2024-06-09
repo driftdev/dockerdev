@@ -1,6 +1,6 @@
 services:
   dragonfly:
-    image: "docker.dragonflydb.io/dragonflydb/dragonfly"
+    image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
     ulimits:
       memlock: -1
     ports:

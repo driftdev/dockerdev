@@ -1,6 +1,6 @@
 services:
   dbgate:
-    image: dbgate/dbgate
+    image: dbgate/dbgate:latest
     restart: always
     ports:
       - 80:3000
