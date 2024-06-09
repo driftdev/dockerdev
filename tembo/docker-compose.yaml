@@ -1,6 +1,6 @@
 services:
   tembo:
-    image: quay.io/tembo/tembo-local
+    image: quay.io/tembo/tembo-local:latest
     restart: always
     ports:
       - "5432:5432"
