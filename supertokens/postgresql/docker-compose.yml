@@ -19,7 +19,7 @@ services:
       - data:/var/lib/postgresql/data
 
   supertokens:
-    image: registry.supertokens.io/supertokens/supertokens-postgresql:4.2
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0.2
     depends_on:
       - db
     ports:
