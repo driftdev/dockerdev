@@ -2,8 +2,8 @@ services:
   scylladb:
     image: scylladb/scylla:latest
     environment:
-      YCQL_USER: cassandra
-      YCQL_PASSWORD: cassandra
+      CASSANDRA_USER: cassandra
+      CASSANDRA_PASSWORD: cassandra
     ports:
       - "9042:9042"
       - "7000:7000"
