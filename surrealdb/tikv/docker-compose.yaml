@@ -2,11 +2,7 @@ services:
   pd0:
     container_name: surrealdb-pd0
     image: pingcap/pd:latest
-    ports:
-      - "2379"
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
     command:
       - --name=pd0
       - --client-urls=http://0.0.0.0:2379
@@ -16,16 +12,16 @@ services:
       - --initial-cluster=pd0=http://pd0:2380,pd1=http://pd1:2380,pd2=http://pd2:2380
       - --data-dir=/data/pd0
       - --log-file=/logs/pd0.log
-    restart: on-failure
+    ports:
+      - 2379
+    volumes:
+      - data:/data
+      - logs:/logs
 
   pd1:
     container_name: surrealdb-pd1
     image: pingcap/pd:latest
-    ports:
-      - "2379"
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
     command:
       - --name=pd1
       - --client-urls=http://0.0.0.0:2379
@@ -35,16 +31,16 @@ services:
       - --initial-cluster=pd0=http://pd0:2380,pd1=http://pd1:2380,pd2=http://pd2:2380
       - --data-dir=/data/pd1
       - --log-file=/logs/pd1.log
-    restart: on-failure
+    ports:
+      - 2379
+    volumes:
+      - data:/data
+      - logs:/logs
 
   pd2:
     container_name: surrealdb-pd2
     image: pingcap/pd:latest
-    ports:
-      - "2379"
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
     command:
       - --name=pd2
       - --client-urls=http://0.0.0.0:2379
@@ -54,78 +50,82 @@ services:
       - --initial-cluster=pd0=http://pd0:2380,pd1=http://pd1:2380,pd2=http://pd2:2380
       - --data-dir=/data/pd2
       - --log-file=/logs/pd2.log
-    restart: on-failure
+    ports:
+      - 2379
+    volumes:
+      - data:/data
+      - logs:/logs
 
   tikv0:
     container_name: surrealdb-tikv0
     image: pingcap/tikv:latest
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
+    depends_on:
+      - pd0
+      - pd1
+      - pd2
     command:
       - --addr=0.0.0.0:20160
       - --advertise-addr=tikv0:20160
       - --data-dir=/data/tikv0
       - --pd=pd0:2379,pd1:2379,pd2:2379
       - --log-file=/logs/tikv0.log
-    depends_on:
-      - "pd0"
-      - "pd1"
-      - "pd2"
-    restart: on-failure
+    volumes:
+      - data:/data
+      - logs:/logs
 
   tikv1:
     container_name: surrealdb-tikv1
     image: pingcap/tikv:latest
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
+    depends_on:
+      - pd0
+      - pd1
+      - pd2
     command:
       - --addr=0.0.0.0:20160
       - --advertise-addr=tikv1:20160
       - --data-dir=/data/tikv1
       - --pd=pd0:2379,pd1:2379,pd2:2379
       - --log-file=/logs/tikv1.log
-    depends_on:
-      - "pd0"
-      - "pd1"
-      - "pd2"
-    restart: on-failure
+    volumes:
+      - data:/data
+      - logs:/logs
 
   tikv2:
     container_name: surrealdb-tikv2
     image: pingcap/tikv:latest
-    volumes:
-      - data:/data
-      - logs:/logs
+    restart: on-failure
+    depends_on:
+      - pd0
+      - pd1
+      - pd2
     command:
       - --addr=0.0.0.0:20160
       - --advertise-addr=tikv2:20160
       - --data-dir=/data/tikv2
       - --pd=pd0:2379,pd1:2379,pd2:2379
       - --log-file=/logs/tikv2.log
-    depends_on:
-      - "pd0"
-      - "pd1"
-      - "pd2"
-    restart: on-failure
+    volumes:
+      - data:/data
+      - logs:/logs
 
   surrealdb:
-    image: surrealdb/surrealdb:latest
     container_name: surrealdb
-    ports:
-      - "8000:8000"
+    image: surrealdb/surrealdb:latest
+    restart: always
+    depends_on:
+      - tikv0
+      - tikv1
+      - tikv2
     command:
       - start
       - --log=trace
       - --user=dev
       - --pass=dev
       - tikv://pd0:2379
-    depends_on:
-      - tikv0
-      - tikv1
-      - tikv2
-    restart: always
+    ports:
+      - 8000:8000
 
 volumes:
   data:

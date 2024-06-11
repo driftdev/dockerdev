@@ -7,16 +7,16 @@ services:
       YSQL_PASSWORD: dev
       YCQL_USER: dev
       YCQL_PASSWORD: dev
-    ports:
-      - "7000:7000"
-      - "9000:9000"
-      - "15433:15433"
-      - "5433:5433"
-      - "9042:9042"
     command: >
       bin/yugabyted start
       --base_dir=/home/yugabyte/yb_data
       --background=false
+    ports:
+      - 7000:7000
+      - 9000:9000
+      - 15433:15433
+      - 5433:5433
+      - 9042:9042
     volumes:
       - data:/home/yugabyte/yb_data
 

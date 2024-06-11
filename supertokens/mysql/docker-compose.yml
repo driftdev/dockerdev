@@ -1,6 +1,7 @@
 services:
   db:
     image: mysql:latest
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: dev
@@ -10,7 +11,6 @@ services:
       - 3306:3306
     networks:
       - app_network
-    restart: unless-stopped
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
@@ -18,15 +18,15 @@ services:
 
   supertokens:
     image: registry.supertokens.io/supertokens/supertokens-mysql:9.0.2
+    restart: always
     depends_on:
       - db
-    ports:
-      - 3567:3567
     environment:
       MYSQL_CONNECTION_URI: mysql://dev:dev@db:3306/supertokens
+    ports:
+      - 3567:3567
     networks:
       - app_network
-    restart: unless-stopped
     healthcheck:
       test: >
         bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'

@@ -1,26 +1,26 @@
 services:
   zitadel:
-    networks:
-      - "zitadel"
     image: ghcr.io/zitadel/zitadel:latest
     restart: always
-    command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
-    environment:
-      - "ZITADEL_DATABASE_POSTGRES_HOST=db"
-      - "ZITADEL_DATABASE_POSTGRES_PORT=5432"
-      - "ZITADEL_DATABASE_POSTGRES_DATABASE=zitadel"
-      - "ZITADEL_DATABASE_POSTGRES_USER_USERNAME=zitadel"
-      - "ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=zitadel"
-      - "ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=disable"
-      - "ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=dev"
-      - "ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=dev"
-      - "ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=disable"
-      - "ZITADEL_EXTERNALSECURE=false"
     depends_on:
       db:
-        condition: "service_healthy"
+        condition: service_healthy
+    environment:
+      ZITADEL_DATABASE_POSTGRES_HOST: db
+      ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: dev
+      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: dev
+      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+      ZITADEL_EXTERNALSECURE: false
+    command: start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled
     ports:
-      - "8080:8080"
+      - 8080:8080
+    networks:
+      - zitadel
     ## default credentials
     ## username: zitadel-admin@zitadel.localhost
     ## password: Password1!
@@ -29,18 +29,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
-    networks:
-      - "zitadel"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
-      interval: "10s"
-      timeout: "30s"
-      retries: 5
-      start_period: "20s"
-    ports:
-      - "5432:5432"
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
     command:
       [
         "postgres",
@@ -53,8 +43,18 @@ services:
         "-c",
         "max_replication_slots=10",
       ]
+    ports:
+      - "5432:5432"
+    networks:
+      - zitadel
     volumes:
       - data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: "10s"
+      timeout: "30s"
+      retries: 5
+      start_period: "20s"
 
 volumes:
   data:

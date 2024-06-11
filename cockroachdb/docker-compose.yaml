@@ -6,10 +6,10 @@ services:
       COCKROACH_DATABASE: dev
       COCKROACH_USER: dev
       COCKROACH_PASSWORD: dev
-    ports:
-      - "26257:26257"
-      - "8080:8080"
     command: start-single-node
+    ports:
+      - 26257:26257
+      - 8080:8080
     volumes:
       - data:/cockroach/cockroach-data
 

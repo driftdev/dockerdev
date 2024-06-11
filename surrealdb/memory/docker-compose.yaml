@@ -1,15 +1,11 @@
 services:
   surrealdb:
     image: surrealdb/surrealdb:latest
-    container_name: surrealdb
-    ports:
-      - "8000:8000"
     restart: always
     command:
       - start
       - --user=dev
       - --pass=dev
       - memory
-
-volumes:
-  data:
+    ports:
+      - 8000:8000

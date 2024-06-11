@@ -2,13 +2,13 @@ services:
   pocketbase:
     image: ghcr.io/muchobien/pocketbase:latest
     restart: always
+    environment:
+      ENCRYPTION: example #optional
     command:
       - --encryptionEnv #optional
       - ENCRYPTION #optional
-    environment:
-      ENCRYPTION: example #optional
     ports:
-      - "8090:8090"
+      - 8090:8090
     volumes:
       - data:/pb_data
       - public:/pb_public #optional

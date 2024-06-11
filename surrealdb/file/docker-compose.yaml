@@ -1,8 +1,6 @@
 services:
   surrealdb:
     image: surrealdb/surrealdb:latest
-    ports:
-      - "8000:8000"
     restart: always
     command:
       - start
@@ -11,6 +9,8 @@ services:
       - --user=dev
       - --pass=dev
       - file:/data/database.db
+    ports:
+      - 8000:8000
     volumes:
       - data:/data
 
