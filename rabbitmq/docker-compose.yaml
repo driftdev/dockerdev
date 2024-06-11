@@ -2,6 +2,9 @@ services:
   rabbitmq:
     image: rabbitmq:latest
     restart: always
+    environment:
+      RABBITMQ_DEFAULT_PASS: dev
+      RABBITMQ_DEFAULT_USER: dev
     ports:
       - 5672:5672
       - 15672:15672
