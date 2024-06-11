@@ -7,4 +7,9 @@ services:
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev
     ports:
-      - "3306:3306"
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+
+volumes:
+  data:
