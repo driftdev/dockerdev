@@ -1,0 +1,13 @@
+services:
+  scylladb:
+    image: cassandra:latest
+    environment:
+      CASSANDRA_USER: cassandra
+      CASSANDRA_PASSWORD: cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - data:/var/lib/cassandra
+
+volumes:
+  data:
