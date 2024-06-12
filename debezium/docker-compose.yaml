@@ -21,9 +21,9 @@ services:
       DEBEZIUM_SOURCE_SCHEMA_WHITELIST: public
       DEBEZIUM_SOURCE_PLUGIN_NAME: pgoutput
     ports:
-      - 5656:5656
+      - 8180:8080
     volumes:
-      - data:/var/lib/edgedb/data
+      - data:/data
 
 volumes:
   data:
