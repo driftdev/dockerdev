@@ -1,6 +1,0 @@
-services:
-  conduit:
-    image: ghcr.io/conduitio/conduit:latest
-    restart: always
-    ports:
-      - 8100:8080
