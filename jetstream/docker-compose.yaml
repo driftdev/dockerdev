@@ -1,0 +1,14 @@
+services:
+  jetstream:
+    image: nats:latest
+    restart: always
+    command: --js --sd /data
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
+    volumes:
+      - data:/data
+
+volumes:
+  data:
