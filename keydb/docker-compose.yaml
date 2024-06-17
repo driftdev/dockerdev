@@ -2,6 +2,8 @@ services:
   keydb:
     image: eqalpha/keydb:latest
     restart: always
+    environment:
+      REDIS_ARGS: --requirepass dev --appendonly yes
     ports:
       - 6379:6379
     volumes:
