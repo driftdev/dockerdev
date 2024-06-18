@@ -1,0 +1,6 @@
+services:
+  memcached:
+    image: memcached:latest
+    restart: always
+    ports:
+      - 11211:11211
