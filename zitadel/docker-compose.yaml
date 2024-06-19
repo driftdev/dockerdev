@@ -1,6 +1,7 @@
 services:
   zitadel:
     image: ghcr.io/zitadel/zitadel:latest
+    container_name: zitadel
     restart: always
     depends_on:
       db:
@@ -27,6 +28,7 @@ services:
 
   db:
     image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: dev
