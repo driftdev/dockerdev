@@ -1,13 +1,14 @@
 services:
   spicedb:
     image: authzed/spicedb:latest
+    container_name: spicedb
     restart: always
     depends_on:
       - migrate
     environment:
       SPICEDB_GRPC_PRESHARED_KEY: foobar
       SPICEDB_DATASTORE_ENGINE: cockroachdb
-      SPICEDB_DATASTORE_CONN_URI: postgresql://dev:dev@crdb:26257/spicedb?sslmode=disable
+      SPICEDB_DATASTORE_CONN_URI: postgresql://dev:dev@cockroachdb:26257/spicedb?sslmode=disable
       SPICEDB_LOG_LEVEL: info
       SPICEDB_LOG_FORMAT: console
     command: serve
@@ -18,42 +19,45 @@ services:
 
   migrate:
     image: authzed/spicedb:latest
+    container_name: migrate
     restart: on-failure:3
     depends_on:
       - init_database
     environment:
       SPICEDB_DATASTORE_ENGINE: cockroachdb
-      SPICEDB_DATASTORE_CONN_URI: postgresql://dev:dev@crdb:26257/spicedb?sslmode=disable
+      SPICEDB_DATASTORE_CONN_URI: postgresql://dev:dev@cockroachdb:26257/spicedb?sslmode=disable
       SPICEDB_LOG_LEVEL: info
       SPICEDB_LOG_FORMAT: console
     command: migrate head
 
-  init_database:
+  cockroachdb_1:
     image: cockroachdb/cockroach:latest
+    container_name: cockroachdb_1
     restart: on-failure:3
     depends_on:
-      - init_cluster
+      - cockroachdb_2
     environment:
-      COCKROACH_HOST: crdb:26257
+      COCKROACH_HOST: cockroachdb:26257
     command: "sql --insecure -e 'CREATE DATABASE IF NOT EXISTS spicedb;'"
 
-  init_cluster:
+  cockroachdb_2:
     image: cockroachdb/cockroach:latest
+    container_name: cockroachdb_2
     restart: on-failure:3
     depends_on:
-      - crdb
+      - cockroachdb_3
     environment:
       # initialize cluster through node 1
-      COCKROACH_HOST: datastores-crdb-1:26257
+      COCKROACH_HOST: cockroachdb_1:26257
     command: "init --insecure"
 
-  crdb:
+  cockroachdb_3:
     image: cockroachdb/cockroach:latest
-    # in order to make the cluster form, the host name is <project>-<service>-<number>
-    # The setup will support --scale arg with any value
+    container_name: cockroachdb_3
+    restart: always
     environment:
       POSTGRES_PASSWORD: dev
-    command: "start --join=datastores-crdb-1,datastores-crdb-2,datastores-crdb-3 --insecure"
+    command: "start --join=cockroachdb_1,cockroachdb_2,cockroachdb_3 --insecure"
     ports:
       - 8080
       - 26257
