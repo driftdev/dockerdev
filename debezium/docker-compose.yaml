@@ -1,6 +1,8 @@
 services:
-  edgedb:
+  debezium:
     image: debezium/server:latest
+    container_name: debezium
+    restart: always
     environment:
       # NATS Jetstream sink
       DEBEZIUM_SINK_TYPE: nats-jetstream
