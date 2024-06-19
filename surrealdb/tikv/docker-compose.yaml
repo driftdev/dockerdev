@@ -1,7 +1,7 @@
 services:
   pd0:
-    container_name: surrealdb-pd0
     image: pingcap/pd:latest
+    container_name: surrealdb-pd0
     restart: on-failure
     command:
       - --name=pd0
@@ -19,8 +19,8 @@ services:
       - logs:/logs
 
   pd1:
-    container_name: surrealdb-pd1
     image: pingcap/pd:latest
+    container_name: surrealdb-pd1
     restart: on-failure
     command:
       - --name=pd1
@@ -38,8 +38,8 @@ services:
       - logs:/logs
 
   pd2:
-    container_name: surrealdb-pd2
     image: pingcap/pd:latest
+    container_name: surrealdb-pd2
     restart: on-failure
     command:
       - --name=pd2
@@ -57,8 +57,8 @@ services:
       - logs:/logs
 
   tikv0:
-    container_name: surrealdb-tikv0
     image: pingcap/tikv:latest
+    container_name: surrealdb-tikv0
     restart: on-failure
     depends_on:
       - pd0
@@ -75,8 +75,8 @@ services:
       - logs:/logs
 
   tikv1:
-    container_name: surrealdb-tikv1
     image: pingcap/tikv:latest
+    container_name: surrealdb-tikv1
     restart: on-failure
     depends_on:
       - pd0
@@ -93,8 +93,8 @@ services:
       - logs:/logs
 
   tikv2:
-    container_name: surrealdb-tikv2
     image: pingcap/tikv:latest
+    container_name: surrealdb-tikv2
     restart: on-failure
     depends_on:
       - pd0
@@ -111,8 +111,8 @@ services:
       - logs:/logs
 
   surrealdb:
-    container_name: surrealdb
     image: surrealdb/surrealdb:latest
+    container_name: surrealdb
     restart: always
     depends_on:
       - tikv0

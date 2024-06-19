@@ -1,6 +1,7 @@
 services:
   surrealdb:
     image: surrealdb/surrealdb:latest
+    container_name: surrealdb
     restart: always
     command:
       - start
