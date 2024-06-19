@@ -1,6 +1,7 @@
 services:
-  db:
+  postgres:
     image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: dev
@@ -20,11 +21,12 @@ services:
 
   supertokens:
     image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0.2
+    container_name: supertokens
     restart: always
     depends_on:
-      - db
+      - postgres
     environment:
-      POSTGRESQL_CONNECTION_URI: postgresql://dev:dev@db:5432/supertokens
+      POSTGRESQL_CONNECTION_URI: postgresql://dev:dev@postgres:5432/supertokens
     ports:
       - 3567:3567
     networks:
