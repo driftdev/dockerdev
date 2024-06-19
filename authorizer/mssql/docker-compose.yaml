@@ -1,6 +1,7 @@
 services:
   authorizer:
     image: lakhansamani/authorizer:latest
+    container_name: authorizer
     restart: always
     ports:
       - 8070:8080

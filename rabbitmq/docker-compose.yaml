@@ -1,6 +1,7 @@
 services:
   rabbitmq:
     image: rabbitmq:latest
+    container_name: rabbitmq
     restart: always
     environment:
       RABBITMQ_DEFAULT_PASS: dev

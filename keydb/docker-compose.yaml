@@ -1,6 +1,7 @@
 services:
   keydb:
     image: eqalpha/keydb:latest
+    container_name: keydb
     restart: always
     command: keydb-server --requirepass dev --save 60 1 --appendonly yes
     ports:

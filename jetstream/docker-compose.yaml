@@ -1,6 +1,7 @@
 services:
   jetstream:
     image: nats:latest
+    container_name: jetstream
     restart: always
     command: --js --sd /data
     ports:

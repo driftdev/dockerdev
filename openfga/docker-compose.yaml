@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: dev
@@ -19,6 +20,7 @@ services:
 
   migrate:
     image: openfga/openfga:latest
+    container_name: migrate
     depends_on:
       postgres:
         condition: service_healthy
@@ -31,6 +33,7 @@ services:
 
   openfga:
     image: openfga/openfga:latest
+    container_name: openfga
     restart: always
     depends_on:
       migrate:

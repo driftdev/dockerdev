@@ -1,6 +1,7 @@
 services:
   mariadb:
     image: mariadb:latest
+    container_name: mariadb
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: dev

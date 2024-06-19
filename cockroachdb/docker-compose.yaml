@@ -1,6 +1,7 @@
 services:
   cockroachdb:
     image: cockroachdb/cockroach:latest
+    container_name: cockroachdb
     restart: always
     environment:
       COCKROACH_DATABASE: dev

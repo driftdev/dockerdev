@@ -1,6 +1,7 @@
 services:
   centrifugo:
     image: centrifugo/centrifugo:latest
+    container_name: centrifugo
     ulimits:
       nofile:
         soft: 65535

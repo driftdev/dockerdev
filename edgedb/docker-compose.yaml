@@ -1,6 +1,7 @@
 services:
   edgedb:
     image: edgedb/edgedb:latest
+    container_name: edgedb
     environment:
       EDGEDB_SERVER_PASSWORD: dev
       EDGEDB_SERVER_TLS_CERT_MODE: generate_self_signed

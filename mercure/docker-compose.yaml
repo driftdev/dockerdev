@@ -1,6 +1,7 @@
 services:
   mercure:
     image: dunglas/mercure:latest
+    container_name: mercure
     restart: always
     environment:
       SERVER_NAME: :80

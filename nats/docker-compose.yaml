@@ -1,6 +1,7 @@
 services:
   nats:
     image: nats:latest
+    container_name: nats
     restart: always
     ports:
       - 4222:4222

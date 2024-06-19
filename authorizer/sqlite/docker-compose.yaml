@@ -1,7 +1,8 @@
 services:
   authorizer:
-    restart: always
     image: lakhansamani/authorizer:latest
+    container_name: authorizer
+    restart: always
     ports:
       - 8050:8050
     environment:

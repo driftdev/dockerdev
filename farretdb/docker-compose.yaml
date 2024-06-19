@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: dev
@@ -23,6 +24,7 @@ services:
 
   ferretdb:
     image: ghcr.io/ferretdb/ferretdb:latest
+    container_name: ferretdb
     restart: always
     depends_on:
       - postgres

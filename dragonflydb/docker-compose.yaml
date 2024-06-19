@@ -1,6 +1,7 @@
 services:
-  dragonfly:
+  dragonflydb:
     image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
+    container_name: dragonflydb
     restart: always
     ulimits:
       memlock: -1

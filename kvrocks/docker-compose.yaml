@@ -1,6 +1,7 @@
 services:
   kvrocks:
     image: apache/kvrocks:latest
+    container_name: kvrocks
     restart: always
     environment:
       KVROCKS_ADMIN_SECRET: dev

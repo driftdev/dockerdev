@@ -1,6 +1,7 @@
 services:
   postgrest:
     image: postgrest/postgrest:latest
+    container_name: postgrest
     restart: always
     environment:
       PGRST_DB_URI: postgresql://dev:dev@host.docker.internal:5432/postgres

@@ -1,6 +1,7 @@
 services:
   etcd:
     image: bitnami/etcd:latest
+    container_name: etcd
     restart: always
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
