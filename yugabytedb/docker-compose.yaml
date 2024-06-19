@@ -1,6 +1,7 @@
 services:
-  postgres:
+  yugabytedb:
     image: yugabytedb/yugabyte:latest
+    container_name: yugabytedb
     restart: always
     environment:
       YSQL_USER: dev
