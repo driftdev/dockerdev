@@ -1,0 +1,12 @@
+services:
+  skytable:
+    image: skytable/skytable:latest
+    container_name: skytable
+    restart: always
+    ports:
+      - 2003:2003
+    volumes:
+      - data:/var/lib/skytable
+
+volumes:
+  data:
