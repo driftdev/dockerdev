@@ -1,7 +1,8 @@
 services:
   scylladb:
-    image: cassandra:latest
     container_name: cassandra
+    image: cassandra:latest
+    restart: always
     environment:
       CASSANDRA_USER: cassandra
       CASSANDRA_PASSWORD: cassandra
