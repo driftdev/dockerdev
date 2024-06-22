@@ -1,0 +1,7 @@
+services:
+  arroyo:
+    image: ghcr.io/arroyosystems/arroyo-single:latest
+    container_name: arroyo
+    restart: always
+    ports:
+      - 8002:8000
