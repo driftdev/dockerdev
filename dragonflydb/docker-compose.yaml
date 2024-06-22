@@ -1,16 +1,13 @@
 services:
   dragonflydb:
-    image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
     container_name: dragonflydb
+    image: docker.dragonflydb.io/dragonflydb/dragonfly:latest
     restart: always
     ulimits:
       memlock: -1
+    command: dragonfly --requirepass dev --save 60 1
     ports:
       - 6379:6379
-    # For better performance, consider `host` mode instead `port` to avoid docker NAT.
-    # `host` mode is NOT currently supported in Swarm Mode.
-    # https://docs.docker.com/compose/compose-file/compose-file-v3/#network_mode
-    # network_mode: "host"
     volumes:
       - data:/data
 
