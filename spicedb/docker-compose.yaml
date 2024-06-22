@@ -1,7 +1,7 @@
 services:
   spicedb:
-    image: authzed/spicedb:latest
     container_name: spicedb
+    image: authzed/spicedb:latest
     restart: always
     depends_on:
       - migrate
@@ -18,8 +18,8 @@ services:
       - 50051:50051
 
   migrate:
-    image: authzed/spicedb:latest
     container_name: migrate
+    image: authzed/spicedb:latest
     restart: on-failure:3
     depends_on:
       - init_database
@@ -31,29 +31,32 @@ services:
     command: migrate head
 
   cockroachdb_1:
-    image: cockroachdb/cockroach:latest
     container_name: cockroachdb_1
+    image: cockroachdb/cockroach:latest
     restart: on-failure:3
     depends_on:
       - cockroachdb_2
     environment:
       COCKROACH_HOST: cockroachdb:26257
+    volumes:
+      - data_1:/cockroach/cockroach-data
     command: "sql --insecure -e 'CREATE DATABASE IF NOT EXISTS spicedb;'"
 
   cockroachdb_2:
-    image: cockroachdb/cockroach:latest
     container_name: cockroachdb_2
+    image: cockroachdb/cockroach:latest
     restart: on-failure:3
     depends_on:
       - cockroachdb_3
     environment:
-      # initialize cluster through node 1
       COCKROACH_HOST: cockroachdb_1:26257
+    volumes:
+      - data_2:/cockroach/cockroach-data
     command: "init --insecure"
 
   cockroachdb_3:
-    image: cockroachdb/cockroach:latest
     container_name: cockroachdb_3
+    image: cockroachdb/cockroach:latest
     restart: always
     environment:
       POSTGRES_PASSWORD: dev
@@ -61,9 +64,16 @@ services:
     ports:
       - 8080
       - 26257
+    volumes:
+      - data_3:/cockroach/cockroach-data
     healthcheck:
       test: "curl --fail http://localhost:8080/health?ready=1 || exit 1"
       interval: "2s"
       retries: 3
       start_period: "15s"
       timeout: "5s"
+
+volumes:
+  data_1:
+  data_2:
+  data_3:
