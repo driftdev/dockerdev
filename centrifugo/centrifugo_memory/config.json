@@ -1,4 +1,5 @@
 {
+    "engine": "memory",
     "port": 9000,
     "allowed_origins": [
         "*"
