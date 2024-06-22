@@ -3,8 +3,11 @@ services:
     image: typesense/typesense:26.0
     container_name: typesense
     restart: always
-    command: --data-dir /data --api-key=xyz --enable-cors
+    command: --data-dir /data --api-key=dev --enable-cors
     ports:
       - 8108:8108
     volumes:
-      - ./typesense-data:/data
+      - data:/data
+
+volumes:
+  data:
