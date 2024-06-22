@@ -1,7 +1,7 @@
 services:
   debezium:
-    image: debezium/server:latest
     container_name: debezium
+    image: debezium/server:latest
     restart: always
     environment:
       # NATS Jetstream sink

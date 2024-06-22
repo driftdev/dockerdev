@@ -1,7 +1,7 @@
 services:
   postgres:
-    image: postgres:latest
     container_name: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: dev
@@ -10,8 +10,8 @@ services:
       - data:/var/lib/postgresql/data
 
   hasura:
-    image: hasura/graphql-engine:latest
     container_name: hasura
+    image: hasura/graphql-engine:latest
     restart: always
     depends_on:
       - postgres

@@ -1,7 +1,7 @@
 services:
   pocketbase:
-    image: ghcr.io/muchobien/pocketbase:latest
     container_name: pocketbase
+    image: ghcr.io/muchobien/pocketbase:latest
     restart: always
     environment:
       ENCRYPTION: example #optional

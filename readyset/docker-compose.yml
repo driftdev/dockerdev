@@ -1,7 +1,8 @@
 services:
   readyset:
-    image: readysettech/readyset:latest
     container_name: readyset
+    image: readysettech/readyset:latest
+    restart: always
     environment:
       UPSTREAM_DB_URL: postgres://dev:dev@host.docker.internal:5432/postgres
       LISTEN_ADDRESS: 0.0.0.0:5433

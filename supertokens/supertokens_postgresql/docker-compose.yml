@@ -1,7 +1,7 @@
 services:
   postgres:
-    image: postgres:latest
     container_name: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: dev
@@ -20,8 +20,8 @@ services:
       - data:/var/lib/postgresql/data
 
   supertokens:
-    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0.2
     container_name: supertokens
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0.2
     restart: always
     depends_on:
       - postgres

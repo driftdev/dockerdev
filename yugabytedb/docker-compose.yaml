@@ -1,7 +1,7 @@
 services:
   yugabytedb:
-    image: yugabytedb/yugabyte:latest
     container_name: yugabytedb
+    image: yugabytedb/yugabyte:latest
     restart: always
     environment:
       YSQL_USER: dev

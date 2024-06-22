@@ -1,8 +1,8 @@
 services:
   ydb:
+    container_name: ydb
     image: cr.yandex/yc/yandex-docker-local-ydb:latest
     platform: linux/amd64
-    container_name: ydb
     restart: always
     environment:
       GRPC_TLS_PORT: 2135

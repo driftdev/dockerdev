@@ -1,8 +1,8 @@
 services:
   clickhouse:
+    container_name: clickhouse
     image: clickhouse/clickhouse-server
     restart: always
-    container_name: clickhouse
     ulimits:
       memlock: -1
     environment:

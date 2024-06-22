@@ -1,7 +1,7 @@
 services:
   nats:
-    image: nats:latest
     container_name: nats
+    image: nats:latest
     restart: always
     command: --js --sd /data
     ports:

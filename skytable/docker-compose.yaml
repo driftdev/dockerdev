@@ -1,7 +1,7 @@
 services:
   skytable:
-    image: skytable/skytable:latest
     container_name: skytable
+    image: skytable/skytable:latest
     restart: always
     ports:
       - 2003:2003

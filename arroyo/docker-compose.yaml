@@ -1,7 +1,7 @@
 services:
   arroyo:
-    image: ghcr.io/arroyosystems/arroyo-single:latest
     container_name: arroyo
+    image: ghcr.io/arroyosystems/arroyo-single:latest
     restart: always
     environment:
       CHECKPOINT_URL: /checkpoint

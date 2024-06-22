@@ -1,7 +1,7 @@
 services:
   tembo:
-    image: quay.io/tembo/tembo-local:latest
     container_name: tembo
+    image: quay.io/tembo/tembo-local:latest
     restart: always
     stdin_open: true
     tty: true

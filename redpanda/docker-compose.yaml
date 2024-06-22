@@ -1,7 +1,7 @@
 services:
   redpanda:
-    image: redpandadata/redpanda:latest
     container_name: redpanda
+    image: redpandadata/redpanda:latest
     restart: always
     command:
       - redpanda start
@@ -22,8 +22,8 @@ services:
       - 29092:29092
 
   console:
-    image: redpandadata/console:latest
     container_name: console
+    image: redpandadata/console:latest
     restart: always
     entrypoint: /bin/sh
     environment:
