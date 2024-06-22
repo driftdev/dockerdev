@@ -4,9 +4,7 @@ services:
     image: centrifugo/centrifugo:latest
     restart: always
     ulimits:
-      nofile:
-        soft: 65535
-        hard: 65535
+      memlock: -1
     command: centrifugo -c config.json
     ports:
       - 9000:9000
