@@ -1,5 +1,5 @@
 services:
-  scylladb:
+  cassandra:
     container_name: cassandra
     image: cassandra:latest
     restart: always
