@@ -6,9 +6,11 @@ services:
     environment:
       MEILI_MASTER_KEY: dev
       MEILI_ENV: development
-      MEILI_DB_PATH: data:/data.ms
+      MEILI_DB_PATH: /meili_data
     ports:
       - 7700:7700
+    volumes:
+      - data:/meili_data
 
 volumes:
   data:
