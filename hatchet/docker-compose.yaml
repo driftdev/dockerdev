@@ -76,7 +76,6 @@ services:
   hatchet_engine:
     container_name: hatchet_engine
     image: ghcr.io/hatchet-dev/hatchet/hatchet-engine:latest
-    command: /hatchet/hatchet-engine --config /hatchet/config
     restart: on-failure
     depends_on:
       setup_config:
@@ -87,6 +86,7 @@ services:
       DATABASE_URL: postgres://dev:dev@postgres:5432/hatchet
       SERVER_GRPC_BIND_ADDRESS: 0.0.0.0
       SERVER_GRPC_INSECURE: t
+    command: /hatchet/hatchet-engine --config /hatchet/config
     ports:
       - 7077:7070
     volumes:
@@ -96,7 +96,6 @@ services:
   hatchet_api:
     container_name: hatchet_api
     image: ghcr.io/hatchet-dev/hatchet/hatchet-api:latest
-    command: /hatchet/hatchet-api --config /hatchet/config
     restart: on-failure
     depends_on:
       setup_config:
@@ -105,6 +104,7 @@ services:
         condition: service_completed_successfully
     environment:
       DATABASE_URL: postgres://dev:dev@postgres:5432/hatchet
+    command: /hatchet/hatchet-api --config /hatchet/config
     volumes:
       - certs:/hatchet/certs
       - config:/hatchet/config
